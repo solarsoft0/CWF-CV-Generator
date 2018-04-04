@@ -359,7 +359,7 @@ console.log(222);
                 })
             };
 
-            fetch("http://127.0.0.1:3000/generate", options)
+            fetch("http://favcode54.herokuapp.com/generate", options)
                  .then((response) => response.json())
                 .then((response) => {
                     window.open(response.filename, '_blank');
