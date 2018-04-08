@@ -18,195 +18,94 @@
         }
 
         body {
-            font: 16px Helvetica, Sans-Serif;
+            font: 10px Helvetica, Sans-Serif;
             line-height: 24px;
-            background: url(images/noise.jpg);
+            color:rgb(50, 54, 57);
         }
 
-        .clear {
+       body {
+		font-family: Segoe UI;
+	}
 
-        }
+	.boxed {
+		margin: 30px;
+	}
 
-        #page-wrap {
-            width: 800px;
-            margin: 40px auto 60px;
-            display: flex;
-            flex-direction: column;
-        }
+	.thick {
+		border: 3px solid black;
+	}
 
-        #pic {
-            float: right;
-            margin: -30px 0 0 0;
-        }
+	.m-b-10 {
+		margin-bottom: 10px;
+	}
 
-        h1 {
-            margin: 0 0 16px 0;
-            padding: 0 0 16px 0;
-            font-size: 42px;
-            font-weight: bold;
-            letter-spacing: -2px;
-            border-bottom: 1px solid #999;
-        }
+	.m-t-10 {
+		margin-top: 10px;
+	}
 
-        h2 {
-            font-size: 1.2em;
-            margin: 0 0 6px 0;
-            position: relative;
-        }
+	.m-m-t-10 {
+		margin-top: -10px;
+	}
 
-        h2 span {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            font-style: italic;
-            font-family: Georgia, Serif;
-            font-size: 16px;
-            color: #999;
-            font-weight: normal;
-        }
+	.m-t-30 {
+		margin-top: 30px;
+	}
 
-        p {
-            margin: 0 0 16px 0;
-        }
+	.offset-2 {
+		margin-left: 40px;
+	}
 
-        a {
-            color: #999;
-            text-decoration: none;
-            border-bottom: 1px dotted #999;
-        }
+	.pull-right {
+		float: right;
+	}
 
-        a:hover {
-            border-bottom-style: solid;
-            color: black;
-        }
+	.boxed-list {
+		list-style-type: disc;
 
-        ul {
-            margin: 0 0 32px 17px;
-        }
+	}
 
-        #objective {
-            width: 500px;
-            float: left;
-        }
+	thead>tr>td {
+		font-weight: bold;
+	}
 
-        #objective p {
-            font-family: Georgia, Serif;
-            font-style: italic;
-            color: #666;
-        }
+	thead {
+		background: #f6f6f6;
+	}
 
-        dt {
-            font-style: italic;
-            font-weight: bold;
-            font-size: 1.2em;
-            text-align: right;
-            padding: 0 10px 0 0;
-            width: 150px;
-            float: left;
-            height: 4em;
-            border-right: 1px solid #999;
-        }
+	.pull-right {
+		color: darkgray;
+	}
 
-        dd {
-            width: 600px;
-            float: right;
-        }
+	.light {
+		font-weight: lighter;
+	}
+    p {
+        line-height: 1.5;
+    }
+    .p {
+        line-height: 1.5;
+        font-size: 0.9em;
+    }
+    .title {
+        font-size: 1.1em;
+        font-weight: 300;
+    }
+    h4 {
+        padding:5px 0px 5px 0px;
+        font-weight: bolder;
+    }
 
-        dd.clear {
-            float: none;
-            margin: 0;
-            height: 15px;
-        }
+    a:visited, a:link, a:hover, a:active {
+        text-decoration: none;
+        color: #46a394;
+        font-weight: bolder;
+    }
 
-        .form-container {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            justify-items: center;
-            align-items: center;
-            position: fixed;
-        }
-
-        #editor {
-            position: relative;
-            width: 50vw;
-            height: 50vh;
-        }
-
-        textarea {
-            position: relative;
-            width: 50vw;
-            color: white;
-            height: 50vh;
-            font-size: 18px;
-            background-color: rgba(0, 0, 0, 0.8);
-
-        }
-
-        .form-wrapper {
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .button {
-            padding: 10px 55px;
-            margin-top: 10px;
-            background: black;
-            border: none;
-            color: white;
-            cursor: pointer;
-        }
-
-        .button:hover {
-            background: rgba(0, 0, 0, 0.7)
-        }
-
-        table {
-
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th {
-            border-top: 1px solid #dddddd;
-            border-bottom: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        td {
-            text-align: left;
-            padding: 8px;
-        }
-            @media print {
-               body {
-                font: 9px Helvetica, Sans-Serif;
-                 line-height: 1.5
-        }
-
-          #page-wrap {
-            width: 800px;
-            margin: 40px auto 60px;
-            display: flex;
-            flex-direction: column;
-        }
-        }
     </style>
 </head>
 
-<body>
-
-    <div id="page-wrap">
 
 {{{content}}}
-</body>
+
 
 </html>

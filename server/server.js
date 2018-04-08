@@ -36,118 +36,105 @@ app.post('/generate', (req, res) => {
   var data = req.body
   //injecting request data to template string html
 var webpage = `
-<div id="contact-info" class="vcard">
+<body class="boxed">
+	<center>
+		<h1>${data.firstname} ${data.lastname}</h1>
+		<h4 class="light m-m-t-10" style="color:grey; padding-top:5px">
+			${Object.keys(data.contact).map(function(key, index) { return ` 
+			<span class="" >${data.contact[key]}</span>`;
+}).join(' •')}
+		</h4>
+	</center>
 
-    <!-- Microformats! -->
-
-    <h1 class="fn">${data.firstname} ${data.lastname}</h1>
-
-    <p>
-${Object.keys(data.contact).map(function(key, index) { return `
-<strong>${key}:</strong>
-<span class="">${data.contact[key]}</span>
-<br/>`; }).join('')}
-</p>
-
-
-</div>
+	<hr class="thick">
+	<h4 class="">TECHNICAL SKILLS</h4>
+	<div class="offset-2">
+		${data.skills.details.map( function(key) { return `
+		<p>
+			<strong>${key.type}:</strong> ${key.items.map(function (key) { return `${key}` }).join(', ')}` } ).join('</p>')}
+		</div>
+	<h4 class="">GITHUB PROJECTS</h4>
+	<div class="offset-2">
 
 
-<dl>
+		${data.github_projects.items.map(function (key) { return `
+		<p>
+			<strong class="title">${key['project_name']} ${ converter.makeHtml(key['tagline']).replace(/<(\/)?p([^>]*)>/g, '') }
+			</strong>
+		</p>
+		<div class="offset-2 p"> ${key['description'][0]} Technologies: ${key['technology_used'].tools.map(function (item){ return item}).join(', ') }
+		</div> `}).join('')}
 
-    <div class="row">
-    <dt>Technical Skill</dt>
-    <dd>
-        <p>
-${data.skills.details.map( function(key) {
-return `<strong>${key.type}:</strong> ${key.items.map(function (key) {
-    return `${key}`
-}).join(', ')}`    
-}
-).join('<br/>')}
-    </dd>
 
-    <dd class="clear"></dd>
-    <dt>Github Project</dt>
-<dd>${data.github_projects.items.map(function (key) {
-return `
-<strong>${key['project_name']} ${ 
-converter.makeHtml(key['tagline']).replace(/<(\/)?p([^>]*)>/g, '')
-}</strong>
-<br>${key['description'][0]} Technologies: ${key['technology_used'].tools.map(function (item){
-return item}).join(', ') }
-        <br>
-`}).join('')}
+	</div>
+	<h4 class="">OTHER PROJECTS</h4>
 
-    </dd>
-</div>
+	${data.other_projects.items.map(function (key) { return `<div class="offset-2">
+	<p>
+		<strong class="title">${key['headline']}</strong>
+	</p>
+	<div class="offset-2 p"> ${key['points'][0]} Technologies: ${key['technology_used'].tools.map(function (item){ return item}).join(', ') }
+	</div></div>`}).join('')}
+	<h4 class="">PROFESSIONAL EXPERIENCE</h4>
+	<div class="offset-2">
+		<p>
+			<strong class="title">${data.work_experience.items.map(function (key){ return `${key['title']}, ${key['organisation']}, ${key['location']}</b>
+				<span class="pull-right">January 2017 - Present</span>
+			</strong>
+		</p>
+		<div class="offset-2 p">${key['details'][0]} Technologies: ${key['technology_used'].tools.map(function (item){ return item}).join(', ') }
+		</div>
+	</div>` })}
+
+
+	<h4 class="">INVOLVEMENT</h4>
+	<div class="">
+		<ul class="boxed-list offset-2 p">
+			${data.involvement.organizations.map(function (key){ return `
+			<li class="offset-2" style="text-decoration-style:disc"> ${key} </li>` })}
+		</ul>
+	</div>
+	<h4 class="">EDUCATION</h4>
+	<div class="">
+		<table cellpadding="10" style="width:100%">
+			<thead>
+
+				<tr>
+					<th>Degree</th>
+					<th>Major</th>
+					<th>Institution</th>
+					<th>graduation Year</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<tr>
+					${data.education.schools.map(function (key){ return `
+					<td>${key['degree']}</td>
+					<td>${key['major']}</td>
+					<td>${key['institution']}</td>
+					<td>${key['graduation_year']}</td>
+
+					` })}
+				</tr>
+			</tbody>
+
+
+		</table>
+	</div>
+    <h4 class="">RESEARCH EXPERIENCE</h4>
     
+    ${data.research_experience.items.map(function (key) {
+        return `<div class="offset-2">
+	<p>
+		<strong class="title">${key['title']}- ${key['organisation']}</strong>
+	</p>
+	<div class="offset-2 p"> ${key['points'][0]}
+    </div></div>`}).join('')}
 
-<div class="row"></div>
-    <dt>Other Project</dt>
-    <dd>
-        ${data.other_projects.items.map(function (key) {
-return `<strong>${key['headline']}</strong>
-<br>${key['points'][0]} Technologies: ${key['technology_used'].tools.map(function (item){
-return item}).join(', ') }
-        <br>
-`}).join('')}
-    </dd>
-    <dd class="clear"></dd>
-
-   <dt>Professional Experience</dt>
-    <dd>
-        <strong>${data.work_experience.items.map(function (key){
-return `${key['title']}, ${key['organisation']}, ${key['location']}</strong>
-<br>${key['details'][0]} Technologies: ${key['technology_used'].tools.map(function (item){ return item}).join(', ') }
-<br>`
-
-        })}
-    </dd>
-
-    </div>
-
-<dt>Involvement</dt>
-<dd>
-<ul>
- ${data.involvement.organizations.map(function (key){ return `
-<li style="text-decoration-style:disc"> ${key} </li>` })}
-</ul>
-</dd>
-
-<dd class="clear"></dd>
-
-<table>
-    <tr>
-        <th>Degree</th>
-        <th>Major</th>
-        <th>Institution</th>
-        <th>graduation Year</th>
-    </tr>
-    <tr>
- ${data.education.schools.map(function (key){ return `
-<td>${key['degree']}</td>
-<td>${key['major']}</td>
-<td>${key['institution']}</td>
-<td>${key['graduation_year']}</td>
-
-` })}
-    </tr>
-
-</table>
-<dd class="clear"></dd>
-<br/>
-<br/>
-<!-- 
-<dt>Research Experience</dt>
-    <dd>Available on request</dd>
-    <dd class="clear"></dd>
-</dl>
-
-<div class="clear"></div> -->
-
-</div>
+</body>
 `;
+
 
 
 //setting options for PDF
