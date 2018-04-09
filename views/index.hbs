@@ -76,7 +76,7 @@
 </style>
 <body>
 
-<nav class="uk-navbar-container uk-margin" uk-navbar>
+<nav class="uk-navbar-container" uk-navbar>
     <div class="uk-navbar-left">
 
         <a class="uk-navbar-item uk-logo" href="#"><img src="https://favcode54.org/images/favcode54-logo.png" class="logo"/></a>
@@ -90,9 +90,29 @@
 
     </div>
 </nav>
+<div class="uk-card uk-width-1-1 uk-card-default uk-card-body uk-hidden@m uk-margin-small">
+    <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
 
-<div class="uk-flex uk-flex-around">
-    <div class="uk-card uk-width-1-6 uk-card-default uk-card-body uk-margin-left ">
+        <li class="uk-nav-header">Quick Links</li>
+        <li>
+            <a href="#" id="generate">
+                <span class="uk-margin-small-right" uk-icon="icon: table"></span> Generate PDF</a>
+        </li>
+        <li>
+            <a href="#" id="reset">
+                <span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span> Reset to Default</a>
+        </li>
+        <li class="uk-nav-divider"></li>
+        <li>
+            <a href="#" id="clear">
+                <span class="uk-margin-small-right" uk-icon="icon: trash"></span> Clear</a>
+        </li>
+    </ul>
+
+
+</div>
+<div class="uk-flex uk-flex-around ">
+    <div class="uk-card uk-width-1-6 uk-card-default uk-card-body uk-visible@m">
                     <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
                 
                 <li class="uk-nav-header">Quick Links</li>
@@ -114,7 +134,9 @@
         
     </div>
   
- <div id="editor"  class="uk-card uk-width-5-6 uk-card-default uk-card-body" name="json">
+
+<div id="editor" class="uk-card uk-width-1-1 uk-card-default uk-card-body" name="json"></div>
+    
 
 
 </div>
