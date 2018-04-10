@@ -90,21 +90,21 @@
 
     </div>
 </nav>
-<div class="uk-card uk-width-1-1 uk-card-default uk-card-body uk-hidden@m uk-margin-small">
+<div class="mobile uk-card uk-width-1-1 uk-card-default uk-card-body uk-hidden@m uk-margin-small">
     <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
 
         <li class="uk-nav-header">Quick Links</li>
         <li>
-            <a href="#" id="generate">
+            <a href="#" data-id="generate">
                 <span class="uk-margin-small-right" uk-icon="icon: table"></span> Generate PDF</a>
         </li>
         <li>
-            <a href="#" id="reset">
+            <a href="#" data-id="reset">
                 <span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span> Reset to Default</a>
         </li>
         <li class="uk-nav-divider"></li>
         <li>
-            <a href="#" id="clear">
+            <a href="#" data-id="clear">
                 <span class="uk-margin-small-right" uk-icon="icon: trash"></span> Clear</a>
         </li>
     </ul>
@@ -112,21 +112,21 @@
 
 </div>
 <div class="uk-flex uk-flex-around ">
-    <div class="uk-card uk-width-1-6 uk-card-default uk-card-body uk-visible@m">
+    <div class="desktop uk-card uk-width-1-6 uk-card-default uk-card-body uk-visible@m">
                     <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
                 
                 <li class="uk-nav-header">Quick Links</li>
                 <li>
-                    <a href="#" id="generate">
+                    <a href="#" data-id="generate">
                         <span class="uk-margin-small-right" uk-icon="icon: table"></span> Generate PDF</a>
                 </li>
                 <li>
-                    <a href="#" id="reset">
+                    <a href="#" data-id="reset">
                         <span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span> Reset to Default</a>
                 </li>
                 <li class="uk-nav-divider"></li>
                 <li>
-                    <a href="#" id="clear">
+                    <a href="#" data-id="clear">
                         <span class="uk-margin-small-right" uk-icon="icon: trash"></span> Clear</a>
                 </li>
             </ul>
@@ -144,9 +144,12 @@
 </div>
 
 </body>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="/assets/js/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
-          
+   
+
+       
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -333,6 +336,44 @@ document.addEventListener("DOMContentLoaded", function () {
     editor.setValue(sample);
 
 
+  
+   function screen_resize() {
+    var h = parseInt(window.innerHeight);
+    var w = parseInt(window.innerWidth);
+    
+    desktop = $('.desktop a');
+    mobile = $('.mobile a');
+        
+
+    if(w <= 600) {
+        // set all data-id as id in all links ('a' elements) on mobile
+        $.each(mobile, function (index, item) {
+            id_val = $(item).data('id');
+            $(item).attr('id',id_val);
+            //console.log(id_val);
+        });
+        
+        // remove all data-id as id in all links ('a' elements) on desktop
+        $.each(desktop, function (index, item) {
+            $(item).removeAttr('id');
+        });
+
+        console.log('Resized window to mobile.');
+    } else {
+        // set all data-id as id in all links ('a' elements) on desktop
+        $.each(desktop, function (index, item) {
+            id_val = $(item).data('id');
+            $(item).attr('id', id_val);
+        });
+
+        // remove all data-id as id in all links ('a' elements) on mobile
+        $.each(mobile, function (index, item) {
+            $(item).removeAttr('id');
+        });
+        
+        console.log('Resized window to desktop.');
+    }
+    
     // Var Declaration 
     var form = document.getElementById('json_form');
     var container = document.getElementById('page-wrap');
@@ -344,6 +385,15 @@ document.addEventListener("DOMContentLoaded", function () {
     reset.addEventListener('click', handleReset);
     clear.addEventListener('click', handleClear);
     generate.addEventListener('click', handleSubmit);
+
+}
+ // if window resize call responsive function
+$(window).resize(function(e) {
+    screen_resize();
+});
+
+
+screen_resize();
 
 
 
@@ -364,7 +414,7 @@ function handleReset (e){
 json = editor.getValue();
         json = tryParseJSON(json);
 
-console.log(222);
+console.log('generating...');
 
 
         if (json) {
@@ -383,7 +433,7 @@ console.log(222);
                  .then((response) => response.json())
                 .then((response) => {
                     window.open(response.filename, '_blank');
-                    console.log('done');
+                    console.log('generated');
                 })
                 .catch((err) => console.log("Oops, error :("));
 
@@ -398,7 +448,7 @@ console.log(222);
 
 
       function tryParseJSON(jsonString) {
-          console.log(2)
+          console.log('Parsed JSON Object Successfully.')
         try {
             var json = JSON.parse(jsonString);
             if (json && typeof json === "object") {
@@ -410,15 +460,15 @@ console.log(222);
         return false;
     };
 
+      //function for screen resize
+
     
 
 
 });
 
+ 
 
-
-    
-    
 
 </script>
 
