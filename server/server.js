@@ -79,7 +79,7 @@ var webpage = `
 	<div class="offset-2">
 		<p>
 			<strong class="title">${data.work_experience.items.map(function (key){ return `${key['title']}, ${key['organisation']}, ${key['location']}</b>
-				<span class="pull-right">January 2017 - Present</span>
+				<span class="pull-right">${key['from']} - ${key['to']}</span>
 			</strong>
 		</p>
 		<div class="offset-2 p">${key['details'][0]} Technologies: ${key['technology_used'].tools.map(function (item){ return item}).join(', ') }
