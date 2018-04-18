@@ -142,6 +142,7 @@
 </div>
 
 </div>
+<a id="download_link" href="#" target="_blank" style="display:none"></a>
 
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -414,7 +415,6 @@ function handleReset (e){
 json = editor.getValue();
         json = tryParseJSON(json);
 
-console.log('generating...');
 
 
         if (json) {
@@ -429,15 +429,27 @@ console.log('generating...');
                 })
             };
 
-            fetch("http://favcode54.herokuapp.com/generate", options)
+            var temp = generate.innerHTML;
+            generate.innerHTML = "Generating";
+            console.log('generating...');
+
+            fetch("/generate", options)
                  .then((response) => response.json())
                 .then((response) => {
-                    var link = document.getElementById('download_link');
-                    link.href = response.filename;
-                    link.click();
+                    if(response.filename) {
+
+                      generate.innerHTML = "Generated";
+
+                    }else {
+                        
+                        generate.innerHTML = "something went wrong";
+
+                    }
+                    window.document.location.href = response.filename;
+                  generate.innerHTML = temp;
                     console.log('generated');
                 })
-                .catch((err) => console.log("Oops, error :("));
+                .catch((err) => console.log(err));
 
            
         }
