@@ -432,7 +432,9 @@ console.log('generating...');
             fetch("http://favcode54.herokuapp.com/generate", options)
                  .then((response) => response.json())
                 .then((response) => {
-                    window.open(response.filename, '_blank');
+                    var link = document.getElementById('download_link');
+                    link.href = response.filename;
+                    link.click();
                     console.log('generated');
                 })
                 .catch((err) => console.log("Oops, error :("));
