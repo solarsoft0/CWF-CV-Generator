@@ -53,7 +53,7 @@ var webpage = `
 		<p>
 			<strong>${key.type}:</strong> ${key.items.map(function (key) { return `${key}` }).join(', ')}` } ).join('</p>')}
 		</div>
-	<h4 class="">GITHUB PROJECTS</h4>
+	<h4 class="">PERSONAL PROJECTS</h4>
 	<div class="offset-2">
 
 
@@ -87,7 +87,7 @@ var webpage = `
 	</div>` })}
 
 
-	<h4 class="">INVOLVEMENT</h4>
+	<h4 class="">INVOLVEMENTS</h4>
 	<div class="">
 		<ul class="boxed-list offset-2 p">
 			${data.involvement.organizations.map(function (key){ return `
